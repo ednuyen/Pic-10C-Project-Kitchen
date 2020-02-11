@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QPainter>
 
+
 class Food:public QWidget{
  public:
     Food(QWidget *parent= nullptr);

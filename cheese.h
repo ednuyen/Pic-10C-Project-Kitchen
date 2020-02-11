@@ -8,15 +8,10 @@
 #include <QMainWindow>
 #include <QPainter>
 #include "Food.h"
-class Cheese: public QWidget,public Food{
+class Cheese:public Food{
 public:
    Cheese();
     void print();
-
-private:
-    int pos_x;
-    int pos_y;
-
 };
 
 

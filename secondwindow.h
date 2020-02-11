@@ -49,6 +49,10 @@ private:
     Bread_Bin* binb;
     Cheese_Bin* binc;
     Meat_Bin* binm;
+    Player* customer1;
+    Player* customer2;
+    Player* customer3;
+    Player* customer4;
 
 
 

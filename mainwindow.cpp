@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
  // layout->addWidget(challenge_level);
   layout->addWidget(challenge);
 
-
+this->setFixedSize(700,700);
   buttons->addWidget(start);
   buttons->addWidget(leave);
   mainscreen->addLayout(layout);
@@ -52,5 +52,6 @@ void MainWindow::buttonpressed(){
 
 void MainWindow::buttonclose(){
 MainWindow::close();
+w2.close();
 }
 

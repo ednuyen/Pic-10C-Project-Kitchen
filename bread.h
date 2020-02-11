@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include <QPainter>
 #include "Food.h"
+//
 class Bread: public Food{
 public:
    Bread();

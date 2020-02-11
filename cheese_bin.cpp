@@ -1,8 +1,8 @@
 #include "cheese_bin.h"
 Cheese_Bin::Cheese_Bin(QWidget *parent)
     : QWidget(parent){
-    cheese_bin_pos_x = 4;
-    cheese_bin_pos_y = 7;
+    cheese_bin_pos_x = 3;
+    cheese_bin_pos_y = 3;
 }
 
 

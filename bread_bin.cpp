@@ -1,8 +1,8 @@
 #include "bread_bin.h"
 Bread_Bin::Bread_Bin(QWidget *parent)
     : QWidget(parent){
-    bread_bin_pos_x = 2;
-    bread_bin_pos_y = 8;
+    bread_bin_pos_x = 9;
+    bread_bin_pos_y = 1;
 }
 
 

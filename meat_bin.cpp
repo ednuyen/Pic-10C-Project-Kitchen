@@ -1,8 +1,8 @@
 #include "meat_bin.h"
 Meat_Bin::Meat_Bin(QWidget *parent)
     : QWidget(parent){
-    meat_bin_pos_x = 8;
-    meat_bin_pos_y = 6;
+    meat_bin_pos_x = 4;
+    meat_bin_pos_y = 4;
 }
 
 
