@@ -10,7 +10,7 @@
 #include "Food.h"
 class Cheese:public Food{
 public:
-   Cheese();
+   Cheese(QString);
     void print();
 };
 

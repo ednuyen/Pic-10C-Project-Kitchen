@@ -1,8 +1,6 @@
 #include "meat.h"
-Meat::Meat():Food()
- {
- store_type("Meat");
-}
+Meat::Meat(QString a):Food(a)
+ {}
 
 
 void Meat::print(){

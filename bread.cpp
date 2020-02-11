@@ -1,8 +1,8 @@
 #include "bread.h"
 #include <QLabel>
-Bread::Bread():Food()
+Bread::Bread(QString a):Food(a)
  {
- store_type("Bread");
+
 }
 
 

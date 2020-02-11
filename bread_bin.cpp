@@ -1,8 +1,8 @@
 #include "bread_bin.h"
-Bread_Bin::Bread_Bin(QWidget *parent)
-    : QWidget(parent){
-    bread_bin_pos_x = 9;
-    bread_bin_pos_y = 1;
+Bread_Bin::Bread_Bin(int x,int y): Bin(x,y)
+    {
+  //  bread_bin_pos_x = 15;
+   // bread_bin_pos_y = 1;
 }
 
 
@@ -15,9 +15,4 @@ void Bread_Bin:: paintEvent(QPaintEvent* e){
 
     return;
 }
-int Bread_Bin:: get_beard_bin_pos_x(){
-    return bread_bin_pos_x;
-}
-int Bread_Bin:: get_beard_bin_pos_y(){
-    return bread_bin_pos_y;
-}
+

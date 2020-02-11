@@ -1,8 +1,5 @@
 #include "cheese.h"
-Cheese::Cheese():Food()
- {
-    store_type("Cheese");
-}
+Cheese::Cheese(QString a):Food(a){}
 
 void Cheese::print(){
     QLabel* testing = new QLabel ("This is testing if cheese was added to the vector");

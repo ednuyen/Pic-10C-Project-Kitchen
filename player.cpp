@@ -36,10 +36,10 @@ bool Player:: check_order(Player *other){
     return true;
 }
 void Player::set_customer_sandwhich(){
-    Food* a = new Bread;
-    Food* b = new Cheese;
-    Food* c = new Meat;
-    Food* d = new Bread;
+    Food* a = new Bread("White Bread");
+    Food* b = new Cheese("American Cheese");
+    Food* c = new Meat("Turkey Meat");
+    Food* d = new Bread("White Bread");
     this->add_food(a);
     this->add_food(b);
     this->add_food(c);

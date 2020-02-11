@@ -7,16 +7,15 @@
 #include <QVBoxLayout>
 #include <QMainWindow>
 #include <QPainter>
+#include "bin.h"
 
-class Bread_Bin:public QWidget{
+class Bread_Bin:public Bin{
     public:
-       Bread_Bin(QWidget *parent= nullptr);
+       Bread_Bin(int,int);
         void paintEvent(QPaintEvent* e);
-        int get_beard_bin_pos_x();
-        int get_beard_bin_pos_y();
+
 private:
-       int bread_bin_pos_x;
-       int bread_bin_pos_y;
+
 };
 
 

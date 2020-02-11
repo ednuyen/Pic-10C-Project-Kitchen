@@ -1,5 +1,5 @@
-#ifndef CHEESE_BIN_H
-#define CHEESE_BIN_H
+#ifndef VEGGIE_BIN_H
+#define VEGGIE_BIN_H
 
 #include <QMainWindow>
 #include <QPushButton>
@@ -9,15 +9,12 @@
 #include <QMainWindow>
 #include <QPainter>
 #include "bin.h"
-
-class Cheese_Bin:public Bin{
+class Veggie_Bin:public Bin{
     public:
-       Cheese_Bin(int, int);
+       Veggie_Bin(int,int);
         void paintEvent(QPaintEvent* e);
 
 };
 
 
-
-
-#endif // CHEESE_BIN_H
+#endif // VEGGIE_BIN_H

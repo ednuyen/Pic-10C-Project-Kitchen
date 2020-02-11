@@ -1,8 +1,7 @@
 #include "meat_bin.h"
-Meat_Bin::Meat_Bin(QWidget *parent)
-    : QWidget(parent){
-    meat_bin_pos_x = 4;
-    meat_bin_pos_y = 4;
+Meat_Bin::Meat_Bin(int x,int y)
+    : Bin(x,y){
+
 }
 
 
@@ -14,11 +13,4 @@ void Meat_Bin:: paintEvent(QPaintEvent* e){
     painter.drawEllipse(pff);
 
     return;
-}
-int Meat_Bin:: get_meat_bin_pos_x(){
-    return meat_bin_pos_x;
-}
-
-int Meat_Bin:: get_meat_bin_pos_y(){
-    return meat_bin_pos_y;
 }

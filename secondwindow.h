@@ -16,6 +16,8 @@
 #include "bread_bin.h"
 #include "cheese_bin.h"
 #include "meat_bin.h"
+#include "veggie_bin.h"
+#include "veggies.h"
 
 //Desgins a Second Window that will say Welcome to Particle board and then print the grid of particles
 
@@ -46,9 +48,22 @@ private:
     QGridLayout* sandwhich_layout;
     QVBoxLayout* fullwindow;
     Player* main_character;
-    Bread_Bin* binb;
-    Cheese_Bin* binc;
-    Meat_Bin* binm;
+    Bread_Bin* binb1;
+    Bread_Bin* binb2;
+    Bread_Bin* binb3;
+
+    Cheese_Bin* binc1;
+    Cheese_Bin* binc2;
+    Cheese_Bin* binc3;
+
+    Meat_Bin* binm1;
+    Meat_Bin* binm2;
+    Meat_Bin* binm3;
+
+    Veggie_Bin* binv1;
+    Veggie_Bin* binv2;
+    Veggie_Bin* binv3;
+
     Player* customer1;
     Player* customer2;
     Player* customer3;

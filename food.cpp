@@ -1,6 +1,9 @@
 #include "Food.h"
-Food::Food(QWidget *parent)
-    : QWidget(parent){
+Food::Food(){}
+
+Food::Food(QString a)
+    : QWidget(){
+    type_of_food = a;
 
 }
 

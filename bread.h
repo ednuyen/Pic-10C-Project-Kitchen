@@ -12,7 +12,7 @@
 //
 class Bread: public Food{
 public:
-   Bread();
+   Bread(QString);
  void print();
 
 };

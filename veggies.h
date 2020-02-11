@@ -1,6 +1,6 @@
-#ifndef MEAT_H
-#define MEAT_H
-
+#ifndef VEGGIES_H
+#define VEGGIES_H
+#include <QWidget>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLabel>
@@ -9,12 +9,11 @@
 #include <QMainWindow>
 #include <QPainter>
 #include "Food.h"
-
-class Meat: public Food{
+//
+class Veggies: public Food{
 public:
-   Meat(QString);
-     void print();
+   Veggies(QString);
+ void print();
 
 };
-
-#endif // MEAT_H
+#endif // VEGGIES_H

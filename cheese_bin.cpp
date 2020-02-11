@@ -1,8 +1,7 @@
 #include "cheese_bin.h"
-Cheese_Bin::Cheese_Bin(QWidget *parent)
-    : QWidget(parent){
-    cheese_bin_pos_x = 3;
-    cheese_bin_pos_y = 3;
+Cheese_Bin::Cheese_Bin(int x,int y)
+    : Bin(x,y){
+
 }
 
 
@@ -14,11 +13,4 @@ void Cheese_Bin:: paintEvent(QPaintEvent* e){
     painter.drawEllipse(pff);
 
     return;
-}
-int Cheese_Bin::get_cheese_bin_pos_x(){
-    return cheese_bin_pos_x;
-}
-
-int Cheese_Bin::get_cheese_bin_pos_y(){
-    return cheese_bin_pos_y;
 }
