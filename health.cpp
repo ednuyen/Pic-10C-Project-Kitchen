@@ -1,4 +1,6 @@
 #include "health.h"
+
+
 Health::Health(QWidget *parent)
     : QWidget(parent){
     health_value = 10;

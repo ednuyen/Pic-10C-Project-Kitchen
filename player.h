@@ -23,11 +23,12 @@ public:
     int get_pos_x();
     int get_pos_y();
     void add_food(Food*);
-    void print_sandwhich();
+    QVBoxLayout* print_sandwhich();
     int get_vector_size();
-    void set_customer_sandwhich();
+    void set_basic_sandwhich();
     Player& operator = (Player*);
     bool check_order(Player*);
+    void delete_sandwhich();
     void move_right();
     void move_left();
     void move_up();
@@ -36,6 +37,7 @@ private:
     std::vector<Food*> sandwhich;
     int pos_x;
     int pos_y;
+    QString type_of_sandwhich;
 
 
 

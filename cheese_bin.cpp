@@ -1,4 +1,5 @@
 #include "cheese_bin.h"
+
 Cheese_Bin::Cheese_Bin(int x,int y)
     : Bin(x,y){
 

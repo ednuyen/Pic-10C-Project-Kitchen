@@ -10,12 +10,35 @@
 SecondWindow::SecondWindow(QWidget *parent)
     : QWidget(parent)
 {
+  /*  QPixmap bkgnd(":/menu/pic10c-menu-#3-pixilart.png");
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(palette);*/
+
 setFocusPolicy(Qt::ClickFocus);
 
 fullwindow = new QVBoxLayout();
 title_space = new QHBoxLayout();
 play_space = new QGridLayout();
 sandwhich_layout = new QGridLayout();
+
+QLabel* bread1 = new QLabel("WB");
+QLabel* bread2 = new QLabel("WWB");
+QLabel* bread3 = new QLabel("PB");
+
+QLabel* cheese1 = new QLabel("AC");
+QLabel* cheese2 = new QLabel("SC");
+QLabel* cheese3 = new QLabel("VC");
+
+QLabel* meat1 = new QLabel("TM");
+QLabel* meat2 = new QLabel("S");
+QLabel* meat3 = new QLabel("IM");
+
+QLabel* veggies1 = new QLabel("L");
+QLabel* veggies2 = new QLabel("P");
+QLabel* veggies3 = new QLabel("Sp");
+
 
 //player_health
 this->setFixedSize(700,700);
@@ -39,39 +62,75 @@ main_character = new Player;
  binv3 = new Veggie_Bin(14,7);
 
  customer1 = new Player(1,1);
-customer1->set_customer_sandwhich();
-customer1->print_sandwhich();
+ order1 = new QPushButton ("Order1");
+ //order2 = new QPushButton ("Order2");
+ //order3 = new QPushButton ("Order3");
+ //order4 = new QPushButton ("Order4");
+connect(order1, SIGNAL(clicked()), this,SLOT(customer_order()));
+customer1->set_basic_sandwhich();
+
+
  draw_walls();
  draw_targets();
 
 title_space->addWidget(text1);
 title_space->addWidget(health_text);
 play_space->addWidget(customer1,customer1->get_pos_y(),customer1->get_pos_x());
+play_space->addWidget(order1, customer1->get_pos_y(),customer1->get_pos_x()+1);
 play_space->addWidget(main_character, main_character->get_pos_y(),main_character->get_pos_x());
 
 play_space->addWidget(binb1,binb1->get_bin_pos_y(),binb1->get_bin_pos_x());
+play_space->addWidget(bread1,binb1->get_bin_pos_y(),binb1->get_bin_pos_x());
+
 play_space->addWidget(binb2,binb2->get_bin_pos_y(),binb2->get_bin_pos_x());
+play_space->addWidget(bread2,binb2->get_bin_pos_y(),binb2->get_bin_pos_x());
+
 play_space->addWidget(binb3,binb3->get_bin_pos_y(),binb3->get_bin_pos_x());
+play_space->addWidget(bread3,binb3->get_bin_pos_y(),binb3->get_bin_pos_x());
+
 
 play_space->addWidget(binc1,binc1->get_bin_pos_y(),binc1->get_bin_pos_x());
+play_space->addWidget(cheese1,binc1->get_bin_pos_y(),binc1->get_bin_pos_x());
+
 play_space->addWidget(binc2,binc2->get_bin_pos_y(),binc2->get_bin_pos_x());
+play_space->addWidget(cheese2,binc2->get_bin_pos_y(),binc2->get_bin_pos_x());
+
 play_space->addWidget(binc3,binc3->get_bin_pos_y(),binc3->get_bin_pos_x());
+play_space->addWidget(cheese3,binc3->get_bin_pos_y(),binc3->get_bin_pos_x());
+
 
 play_space->addWidget(binm1,binm1->get_bin_pos_y(),binm1->get_bin_pos_x());
+play_space->addWidget(meat1,binm1->get_bin_pos_y(),binm1->get_bin_pos_x());
+
 play_space->addWidget(binm2,binm2->get_bin_pos_y(),binm2->get_bin_pos_x());
+play_space->addWidget(meat2,binm2->get_bin_pos_y(),binm2->get_bin_pos_x());
+
 play_space->addWidget(binm3,binm3->get_bin_pos_y(),binm3->get_bin_pos_x());
+play_space->addWidget(meat3,binm3->get_bin_pos_y(),binm3->get_bin_pos_x());
+
 
 play_space->addWidget(binv1,binv1->get_bin_pos_y(),binv1->get_bin_pos_x());
+play_space->addWidget(veggies1,binv1->get_bin_pos_y(),binv1->get_bin_pos_x());
+
 play_space->addWidget(binv2,binv2->get_bin_pos_y(),binv2->get_bin_pos_x());
+play_space->addWidget(veggies2,binv2->get_bin_pos_y(),binv2->get_bin_pos_x());
+
 play_space->addWidget(binv3,binv3->get_bin_pos_y(),binv3->get_bin_pos_x());
+play_space->addWidget(veggies3,binv3->get_bin_pos_y(),binv3->get_bin_pos_x());
+
 
 fullwindow->addLayout(title_space);
 fullwindow->addLayout(play_space);
-fullwindow->addLayout(sandwhich_layout);
+//fullwindow->addLayout(sandwhich_layout);
 setLayout(fullwindow);
 
 
 
+}
+
+void SecondWindow:: customer_order(){
+    fullwindow-> addLayout(customer1->print_sandwhich());
+    return;
 }
 
 void SecondWindow:: draw_walls(){
@@ -93,7 +152,6 @@ void SecondWindow:: draw_walls(){
     }
 }
 
-
 void SecondWindow:: draw_targets(){
     for (int i =1; i<8; i++){
         Target* a= new Target;
@@ -101,11 +159,20 @@ void SecondWindow:: draw_targets(){
     }
 }
 
-
 void SecondWindow::keyPressEvent(QKeyEvent *event){
     if(event->key() == Qt::Key_G && main_character->get_pos_x()-1==customer1->get_pos_x() &&main_character->get_pos_y()==customer1->get_pos_y()){
         main_character->print_sandwhich();
-        main_character->check_order(customer1);
+        if (main_character->check_order(customer1) == true){
+            QLabel* winner = new QLabel( "You win the game!!");
+            winner->show();
+             main_character->delete_sandwhich();
+        }
+        else{
+            QLabel* looser = new QLabel( "You Lost!!");
+            looser->show();
+             main_character->delete_sandwhich();
+        }
+
 
     }
 
@@ -141,20 +208,17 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
         if(main_character->get_pos_x() == binc1->get_bin_pos_x()&&main_character->get_pos_y() == binc1->get_bin_pos_y() ){
             Food* a = new Cheese("American Cheese");
             main_character->add_food(a);
-            //Cheese_Bin* b = new Cheese_Bin;
-            //sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binc2->get_bin_pos_x()&&main_character->get_pos_y() == binc2->get_bin_pos_y() ){
                  Food* a = new Cheese("Swiss Cheese");
                  main_character->add_food(a);
-                 //Cheese_Bin* b = new Cheese_Bin;
-                 //sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
        if(main_character->get_pos_x() == binc3->get_bin_pos_x()&&main_character->get_pos_y() == binc3->get_bin_pos_y() ){
                Food* a = new Cheese("Vegan Cheese");
                main_character->add_food(a);
-                //Cheese_Bin* b = new Cheese_Bin;
-                  //sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
                   }
 
 
@@ -162,20 +226,17 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
         if(main_character->get_pos_x() == binb1->get_bin_pos_x() && main_character->get_pos_y() == binb1->get_bin_pos_y() ){
             Food* a = new Bread("White Bread");
             main_character->add_food(a);
-           // Bread_Bin* b = new Bread_Bin;
-           // sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binb2->get_bin_pos_x() && main_character->get_pos_y() == binb2->get_bin_pos_y() ){
             Food* a = new Bread("Whole Wheat Bread");
             main_character->add_food(a);
-           // Bread_Bin* b = new Bread_Bin;
-           // sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binb3->get_bin_pos_x() && main_character->get_pos_y() == binb3->get_bin_pos_y() ){
             Food* a = new Bread("Prezel Bun");
             main_character->add_food(a);
-           // Bread_Bin* b = new Bread_Bin;
-           // sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
 
 
@@ -183,20 +244,17 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
         if(main_character->get_pos_x() == binm1->get_bin_pos_x() && main_character->get_pos_y() == binm1->get_bin_pos_y() ){
             Food* a = new Meat("Turkey Meat");
             main_character->add_food(a);
-           // Meat_Bin* b = new Meat_Bin;
-            //sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binm2->get_bin_pos_x() && main_character->get_pos_y() == binm2->get_bin_pos_y() ){
             Food* a = new Meat("Steak");
             main_character->add_food(a);
-           // Meat_Bin* b = new Meat_Bin;
-            //sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binm3->get_bin_pos_x() && main_character->get_pos_y() == binm3->get_bin_pos_y() ){
             Food* a = new Meat("Impossible Meat");
             main_character->add_food(a);
-           // Meat_Bin* b = new Meat_Bin;
-            //sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
 
 
@@ -206,20 +264,17 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
         if(main_character->get_pos_x() == binv1->get_bin_pos_x() && main_character->get_pos_y() == binv1->get_bin_pos_y() ){
             Food* a = new Veggies("Lettuce");
             main_character->add_food(a);
-           // Veggie_Bin* b = new Veggie_Bin;
-           // sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binv2->get_bin_pos_x() && main_character->get_pos_y() == binv2->get_bin_pos_y() ){
             Food* a = new Veggies("Peppers");
             main_character->add_food(a);
-           // Veggie_Bin* b = new Veggie_Bin;
-           // sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
         if(main_character->get_pos_x() == binv3->get_bin_pos_x() && main_character->get_pos_y() == binv3->get_bin_pos_y() ){
             Food* a = new Veggies("Spinage");
             main_character->add_food(a);
-           // Veggie_Bin* b = new Veggie_Bin;
-           // sandwhich_layout->addWidget(b, 12,main_character->get_vector_size());
+
         }
 
 
@@ -228,7 +283,6 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
 
     return;
 }
-
 
 SecondWindow::~SecondWindow(){
     delete main_character;

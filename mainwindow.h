@@ -28,6 +28,6 @@ private:
     QVBoxLayout* mainscreen;
     QVBoxLayout* layout;
     QHBoxLayout* buttons;
-     SecondWindow w2;
+    SecondWindow w2;
 };
 #endif // MAINWINDOW_H

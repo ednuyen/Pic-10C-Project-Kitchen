@@ -36,7 +36,8 @@ public:
     void draw_targets();
     void change_health();
     void keyPressEvent(QKeyEvent *event);
-
+public slots:
+    void customer_order();
 private:
     //The different text that will appear on the window
     QLabel* text1;
@@ -65,9 +66,13 @@ private:
     Veggie_Bin* binv3;
 
     Player* customer1;
+    QPushButton* order1;
     Player* customer2;
+    //QPushButton* order2;
     Player* customer3;
+   // QPushButton* order3;
     Player* customer4;
+   // QPushButton* order4;
 
 
 

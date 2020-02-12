@@ -1,4 +1,5 @@
 #include "bread_bin.h"
+
 Bread_Bin::Bread_Bin(int x,int y): Bin(x,y)
     {
   //  bread_bin_pos_x = 15;

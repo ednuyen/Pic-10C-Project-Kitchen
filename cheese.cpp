@@ -1,4 +1,5 @@
 #include "cheese.h"
+
 Cheese::Cheese(QString a):Food(a){}
 
 void Cheese::print(){
