@@ -35,15 +35,20 @@ public:
     void draw_walls();
     void draw_targets();
     void change_health();
+    void set_up_customers();
     void keyPressEvent(QKeyEvent *event);
 public slots:
-    void customer_order();
+    void customer_order1();
+    void customer_order2();
+    void customer_order3();
+    void customer_order4();
 private:
     //The different text that will appear on the window
     QLabel* text1;
    // Health* player_health;
     QLabel* health_text;
     qreal health =10;
+    int challenge_number;
     QGridLayout* play_space;
     QHBoxLayout* title_space;
     QGridLayout* sandwhich_layout;
@@ -68,11 +73,11 @@ private:
     Player* customer1;
     QPushButton* order1;
     Player* customer2;
-    //QPushButton* order2;
+    QPushButton* order2;
     Player* customer3;
-   // QPushButton* order3;
+  QPushButton* order3;
     Player* customer4;
-   // QPushButton* order4;
+   QPushButton* order4;
 
 
 

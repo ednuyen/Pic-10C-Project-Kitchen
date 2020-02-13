@@ -20,10 +20,13 @@ public:
     Player(int,int);
 
     void paintEvent(QPaintEvent* e);
+    void remove_event();
     int get_pos_x();
     int get_pos_y();
     void add_food(Food*);
+
     QVBoxLayout* print_sandwhich();
+    void test_print_sandwhich();
     int get_vector_size();
     void set_basic_sandwhich();
     Player& operator = (Player*);
@@ -35,8 +38,12 @@ public:
     void move_down();
 private:
     std::vector<Food*> sandwhich;
+
+    int rand_num =0;
+
     int pos_x;
     int pos_y;
+    bool draw_character = true;
     QString type_of_sandwhich;
 
 

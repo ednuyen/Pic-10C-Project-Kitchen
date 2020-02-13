@@ -61,13 +61,25 @@ main_character = new Player;
  binv2 = new Veggie_Bin(13,7);
  binv3 = new Veggie_Bin(14,7);
 
- customer1 = new Player(1,1);
- order1 = new QPushButton ("Order1");
- //order2 = new QPushButton ("Order2");
- //order3 = new QPushButton ("Order3");
- //order4 = new QPushButton ("Order4");
-connect(order1, SIGNAL(clicked()), this,SLOT(customer_order()));
-customer1->set_basic_sandwhich();
+//SET UP CUSTOMER
+             customer1 = new Player(1,1);
+             customer2 = new Player(1,2);
+             customer3 = new Player(1,3);
+             customer4 = new Player(1,4);
+             order1 = new QPushButton ("Order1");
+             order2 = new QPushButton ("Order2");
+             order3 = new QPushButton ("Order3");
+             order4 = new QPushButton ("Order4");
+            connect(order1, SIGNAL(clicked()), this,SLOT(customer_order1()));
+            connect(order2, SIGNAL(clicked()), this,SLOT(customer_order2()));
+            connect(order3, SIGNAL(clicked()), this,SLOT(customer_order3()));
+            connect(order4, SIGNAL(clicked()), this,SLOT(customer_order4()));
+            customer1->set_basic_sandwhich();
+            customer2->set_basic_sandwhich();
+            customer3->set_basic_sandwhich();
+            customer4->set_basic_sandwhich();
+
+
 
 
  draw_walls();
@@ -75,8 +87,16 @@ customer1->set_basic_sandwhich();
 
 title_space->addWidget(text1);
 title_space->addWidget(health_text);
+
 play_space->addWidget(customer1,customer1->get_pos_y(),customer1->get_pos_x());
 play_space->addWidget(order1, customer1->get_pos_y(),customer1->get_pos_x()+1);
+play_space->addWidget(customer2,customer2->get_pos_y(),customer2->get_pos_x());
+play_space->addWidget(order2, customer2->get_pos_y(),customer2->get_pos_x()+1);
+play_space->addWidget(customer3,customer3->get_pos_y(),customer3->get_pos_x());
+play_space->addWidget(order3, customer3->get_pos_y(),customer3->get_pos_x()+1);
+play_space->addWidget(customer4,customer4->get_pos_y(),customer4->get_pos_x());
+play_space->addWidget(order4, customer4->get_pos_y(),customer4->get_pos_x()+1);
+
 play_space->addWidget(main_character, main_character->get_pos_y(),main_character->get_pos_x());
 
 play_space->addWidget(binb1,binb1->get_bin_pos_y(),binb1->get_bin_pos_x());
@@ -128,8 +148,27 @@ setLayout(fullwindow);
 
 }
 
-void SecondWindow:: customer_order(){
-    fullwindow-> addLayout(customer1->print_sandwhich());
+void SecondWindow:: customer_order1(){
+    customer1->test_print_sandwhich();
+    //fullwindow-> addLayout(customer1->print_sandwhich());
+    return;
+}
+
+void SecondWindow:: customer_order2(){
+     customer2->test_print_sandwhich();
+   // fullwindow-> addLayout(customer2->print_sandwhich());
+    return;
+}
+
+void SecondWindow:: customer_order3(){
+     customer3->test_print_sandwhich();
+   // fullwindow-> addLayout(customer3->print_sandwhich());
+    return;
+}
+
+void SecondWindow:: customer_order4(){
+     customer4->test_print_sandwhich();
+    //fullwindow-> addLayout(customer4->print_sandwhich());
     return;
 }
 
@@ -166,6 +205,8 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
             QLabel* winner = new QLabel( "You win the game!!");
             winner->show();
              main_character->delete_sandwhich();
+             customer1->delete_sandwhich();
+             customer1->remove_event();
         }
         else{
             QLabel* looser = new QLabel( "You Lost!!");
@@ -173,6 +214,55 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
              main_character->delete_sandwhich();
         }
 
+    }
+    else if(event->key() == Qt::Key_G && main_character->get_pos_x()-1==customer2->get_pos_x() &&main_character->get_pos_y()==customer2->get_pos_y()){
+        main_character->print_sandwhich();
+        if (main_character->check_order(customer2) == true){
+            QLabel* winner = new QLabel( "You win the game!!");
+            winner->show();
+             main_character->delete_sandwhich();
+             customer2->delete_sandwhich();
+             customer2->remove_event();
+        }
+        else{
+            QLabel* looser = new QLabel( "You Lost!!");
+            looser->show();
+             main_character->delete_sandwhich();
+        }
+
+    }
+
+   else if(event->key() == Qt::Key_G && main_character->get_pos_x()-1==customer3->get_pos_x() &&main_character->get_pos_y()==customer3->get_pos_y()){
+        main_character->print_sandwhich();
+        if (main_character->check_order(customer3) == true){
+            QLabel* winner = new QLabel( "You win the game!!");
+            winner->show();
+             main_character->delete_sandwhich();
+             customer3->delete_sandwhich();
+             customer3->remove_event();
+        }
+        else{
+            QLabel* looser = new QLabel( "You Lost!!");
+            looser->show();
+             main_character->delete_sandwhich();
+        }
+
+    }
+
+    else if(event->key() == Qt::Key_G && main_character->get_pos_x()-1==customer4->get_pos_x() &&main_character->get_pos_y()==customer4->get_pos_y()){
+        main_character->print_sandwhich();
+        if (main_character->check_order(customer4) == true){
+            QLabel* winner = new QLabel( "You win the game!!");
+            winner->show();
+             main_character->delete_sandwhich();
+             customer4->delete_sandwhich();
+             customer4->remove_event();
+        }
+        else{
+            QLabel* looser = new QLabel( "You Lost!!");
+            looser->show();
+             main_character->delete_sandwhich();
+        }
 
     }
 
@@ -287,7 +377,7 @@ void SecondWindow::keyPressEvent(QKeyEvent *event){
 SecondWindow::~SecondWindow(){
     delete main_character;
     delete customer1;
-    delete customer2;
+    /*delete customer2;
     delete customer3;
-    delete customer4;
+    delete customer4;*/
 }

@@ -9,6 +9,7 @@
 #include <time.h>
 Player::Player(QWidget *parent)
     : QWidget(parent){
+
     pos_x =5;
     pos_y = 5;
     setFocusPolicy(Qt::ClickFocus);
@@ -16,6 +17,8 @@ Player::Player(QWidget *parent)
 }
 
 Player::Player(int x,int y){
+    srand(time(NULL));
+
     pos_x =x;
     pos_y= y;
 }
@@ -35,8 +38,7 @@ bool Player:: check_order(Player *other){
 }
 
 void Player::set_basic_sandwhich(){
-    srand(time(NULL));
-    int rand_num = rand() % 4 +1;
+     rand_num = rand() % 5 +1;
         if (rand_num == 1){
             //House Special
             Food* a = new Bread("White Bread");
@@ -85,18 +87,38 @@ void Player::set_basic_sandwhich(){
             this->add_food(d);
             type_of_sandwhich = "The Salad Sandwhich";
     }
+        if (rand_num == 5){
+            //The Loft of Bread
+            Food* a = new Bread("White Bread");
+            Food* b = new Bread("Prezel Bun");
+            Food* c = new Veggies("Whole Wheat Bread");
+            Food* d = new Veggies("White Bread");
+            this->add_food(a);
+            this->add_food(b);
+            this->add_food(c);
+            this->add_food(d);
+            type_of_sandwhich = "The Loft of Bread";
+    }
+
 }
 
 
 void Player:: paintEvent(QPaintEvent* e){
 
+if (draw_character == true){
     QPainter painter(this);
     painter.setBrush(QBrush(Qt::black));
     QRectF pff(0,0,10,10);
     painter.drawEllipse(pff);
+}
     return;
+
 }
 
+void Player::remove_event(){
+    draw_character = false;
+    this-> update();
+}
 //void Player::keyPressEvent(QKeyEvent *e){
 //}
 void Player::set_position(int x,int y){
@@ -118,8 +140,6 @@ void Player::add_food(Food* next_food){
 }
 
 QVBoxLayout* Player::print_sandwhich(){
-
-
     QVBoxLayout* layout = new QVBoxLayout;
         QLabel * title = new QLabel(type_of_sandwhich);
         layout->addWidget(title);
@@ -131,7 +151,22 @@ QVBoxLayout* Player::print_sandwhich(){
         layout->addWidget(new_one);
     }
     return layout;
+}
 
+void Player::test_print_sandwhich(){
+    QWidget* w4 = new QWidget;
+    QVBoxLayout* layout = new QVBoxLayout;
+        QLabel * title = new QLabel(type_of_sandwhich);
+        layout->addWidget(title);
+    for (int i =0; i<sandwhich.size();i++){
+        QLabel* new_one = new QLabel();
+       QString a= sandwhich[i]->get_food_type();
+        new_one->setText(a);
+
+        layout->addWidget(new_one);
+    }
+    w4->setLayout(layout);
+    w4->show();
 }
 
 int Player::get_vector_size(){
@@ -142,11 +177,13 @@ void Player:: delete_sandwhich(){
     for (int i = 0; i<this->get_vector_size();i++){
         delete sandwhich[i];
         sandwhich[i] = nullptr;
-        sandwhich.pop_back();
     }
+     sandwhich.clear();
+
 }
 
 void Player::move_up(){pos_y--;}
 void Player::move_down(){pos_y++;}
 void Player::move_right(){pos_x++;}
 void Player::move_left(){pos_x--;}
+
