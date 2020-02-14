@@ -6,21 +6,25 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QSlider>
+#include <QStackedWidget>
 #include "secondwindow.h"
-
-
+#include "instructionswindow.h"
 
 class MainWindow : public QMainWindow
 {
 
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void buttonpressed();
-    void buttonclose();
+    void pressedPlay();
+    void pressedExit();
+    void pressedHelp();
+
+    QHBoxLayout *getButtons() const;
+    void setButtons(QHBoxLayout *value);
+
 private:
-    QLabel* title;
+    QLabel* blank;
     QLabel* challenge_level;
     QSlider* challenge;
     QPushButton* start;
@@ -29,5 +33,6 @@ private:
     QVBoxLayout* layout;
     QHBoxLayout* buttons;
     SecondWindow w2;
+    InstructionsWindow i;
 };
 #endif // MAINWINDOW_H
